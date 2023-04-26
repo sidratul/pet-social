@@ -27,7 +27,9 @@ export const Button = (props: ButtonProps) => {
       ${loading && styles.loading}
       ${disabled && styles.disabled}
     `}>{!loading ? label : (
-        <Hourglass height={height} width={width}/>
+        <span className={styles.icon}>
+          <Hourglass height={height} width={width}/>
+        </span>
       )}
     </button>
   )

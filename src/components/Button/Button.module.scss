@@ -1,13 +1,4 @@
-$white: #FFFFFF;
-$primary-Yellow-50: #FEFAF3;
-$primary-Yellow-100: #FDF0DB;
-$primary-Yellow-500: #F6C878;
-$primary-Yellow-600: #F3B64C;
-$primary-Yellow-700: #F1AC34;
-$primary-Yellow-800: #E3960F;
-$true-grey-900: #171717;
-$black-20: rgba(0, 0, 0, 0.2);
-
+@import '../../styles/colors';
 
 .btn{
   width: 100%;
@@ -74,4 +65,8 @@ $black-20: rgba(0, 0, 0, 0.2);
   &.loading{
     background-color: $primary-Yellow-50;
   }
+}
+
+.icon{
+  margin: 0 auto;
 }
