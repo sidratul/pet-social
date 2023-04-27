@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Button.module.scss';
-import { Hourglass } from '../Icons';
+import { Icon } from '../Icon';
 
 interface ButtonProps{
   label: string;
@@ -27,9 +27,7 @@ export const Button = (props: ButtonProps) => {
       ${loading && styles.loading}
       ${disabled && styles.disabled}
     `}>{!loading ? label : (
-        <span className={styles.icon}>
-          <Hourglass height={height} width={width}/>
-        </span>
+        <Icon icon='Hourglass' height={height} width={width} className={styles.icon}/>
       )}
     </button>
   )

@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes, useState } from 'react'
 import styles from './BaseTextInput.module.scss';
-import { Eye, EyeOff } from '@/components/Icons';
+import { Icon } from '@/components/Icon';
 
 interface BaseTextInputProps extends Pick<InputHTMLAttributes<HTMLInputElement>, 'type' | 'name' | 'placeholder' | 'id'> {
   label: string;
@@ -13,8 +13,8 @@ export const BaseTextInput = (props: BaseTextInputProps) => {
   const { id, label, error, type, info, ...others} = props;
   const isPassword = props.type === 'password';
   const [view, setView]= useState(!isPassword);
-  const Icon = view? Eye : EyeOff;
   const passStyle = isPassword && !view ? styles.password : '';
+
   return (
     <div className={`${styles.root} ${error && styles['error']} ${passStyle}`}>
       <label className={styles.label} htmlFor={id}> {label}</label>
@@ -27,7 +27,10 @@ export const BaseTextInput = (props: BaseTextInputProps) => {
       {
         isPassword && (
           <span className={styles.icon}>
-            <Icon onClick={()=>setView(!view)}/>
+            <Icon
+              icon={view ? 'Eye' : 'EyeOff'}
+              onClick={()=>setView(!view)}
+            />
           </span>
         )
       }
