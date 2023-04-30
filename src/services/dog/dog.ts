@@ -1,17 +1,11 @@
 import * as api from '../api';
-import { BreedImages, BreedListResponse, DogApiError } from './types';
+import { BreedImages, BreedListResponse, DogApiError, RandomImagesByBreedParams } from './types';
 
 /**TODO create as ENV */
 const DOG_API = `https://dog.ceo/api`;
 
 export const getAllBreeds = () => {
   return api.get<BreedListResponse, DogApiError>(`${DOG_API}/breeds/list/all`);
-}
-
-interface RandomImagesByBreedParams {
-  breed?: string;
-  subBreed?: string;
-  count: number;
 }
 
 export const getRandomDogImages = (params : RandomImagesByBreedParams) => {

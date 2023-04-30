@@ -1,11 +1,11 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { Homepage } from '@/containers/Hompege';
-
-const inter = Inter({ subsets: ['latin'] })
+import { MainLayout } from '@/layouts/MainLayout';
 
 export default function Home() {
   return (
-    <Homepage/>
+    <MainLayout>
+      <Homepage/>
+    </MainLayout>
   );
 }

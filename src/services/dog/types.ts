@@ -12,3 +12,12 @@ export type Breeds = {
 
 export type DogApiError = DogBaseResponse<string>;
 export type BreedImages = DogBaseResponse<string[]>;
+
+export interface Breed{
+  breed: string;
+  subBreed?: string;
+}
+
+export interface RandomImagesByBreedParams extends Partial<Breed>{
+  count?: number;
+}
