@@ -2,7 +2,6 @@ import React, { useState, createContext, ReactNode, useEffect, useContext } from
 import { UserCredential } from 'firebase/auth';
 import { getCookie, setCookie, removeCookie } from 'typescript-cookie';
 import { ToastContainer } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface BaseLayoutContextProps {
@@ -15,7 +14,6 @@ const BaseLayoutContext = createContext<BaseLayoutContextProps>({} as BaseLayout
 
 export const BaseLayout = ({children}: {children: ReactNode}) => {
   const [user, setUser] = useState<UserCredential>();
-  const { push } = useRouter();
 
   const userLogin = (user: UserCredential) => {
     setUser(user);
@@ -33,16 +31,6 @@ export const BaseLayout = ({children}: {children: ReactNode}) => {
       setUser(JSON.parse(user));
     }
   },[])
-
-  // useEffect(()=>{
-  //   console.log("RENDER")
-  //   if(!user){
-  //     push('/login');
-  //     return;
-  //   }
-
-  //   push('/');
-  // },[user]);
 
   return (
     <BaseLayoutContext.Provider

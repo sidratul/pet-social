@@ -12,3 +12,7 @@ export const get = <T,E=unknown>(url: string) => {
 export const post = <T, D=unknown>(url: string, data: D) => {
   return axios.post<T, AxiosResponse<T>, D>(url, data)
 }
+
+export const put = <T, D=unknown>(url: string, data: D) => {
+  return axios.put<T, AxiosResponse<T>, D>(url, data)
+}

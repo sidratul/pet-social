@@ -8,7 +8,7 @@ import { UserParam, UserResposne } from '@/services/user/types';
 import { toast } from 'react-toastify';
 import { login } from '@/services/user';
 import { ApiError } from '@/services/api';
-import { getFirebaseMessage } from '@/services/firebase';
+import { getFirebaseMessage } from '@/utils';
 
 export const LoginForm = () => {
   const { userLogin } = useLayoutContext();

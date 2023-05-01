@@ -13,7 +13,5 @@ const firebaseConfig = {
   appId: process.env.APP_ID
 };
 
-console.log("firebaseConfig", firebaseConfig)
-
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
