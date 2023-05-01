@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.dog.ceo']
+    domains: ['images.dog.ceo'],
+    unoptimized: true,
   }
 }
 

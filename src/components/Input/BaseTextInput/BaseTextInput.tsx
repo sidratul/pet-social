@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, useState } from 'react'
 import styles from './BaseTextInput.module.scss';
 import { Icon } from '@/components/Icon';
 
-interface BaseTextInputProps extends Pick<InputHTMLAttributes<HTMLInputElement>, 'type' | 'name' | 'placeholder' | 'id'> {
+interface BaseTextInputProps extends Pick<InputHTMLAttributes<HTMLInputElement>, 'type' | 'name' | 'placeholder' | 'id' | 'onChange'> {
   label: string;
   isPassword?: boolean;
   error?: string;

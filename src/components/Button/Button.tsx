@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import styles from './Button.module.scss';
 import { Icon } from '../Icon';
 
-interface ButtonProps{
+interface ButtonProps extends Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>{
   label: string;
   style?: 'primary' | 'secondary';
   size?: 'large' | 'medium' | 'small';
@@ -11,7 +11,7 @@ interface ButtonProps{
 }
 
 export const Button = (props: ButtonProps) => {
-  const {style, label, loading, disabled, size} = props;
+  const {style, label, loading, disabled, size, ...other} = props;
   let width = 16;
   let height = 20;
   if (size !== 'large') {
@@ -20,13 +20,16 @@ export const Button = (props: ButtonProps) => {
   }
 
   return (
-    <button className={`
-      ${styles.btn}
-      ${size && styles[size]}
-      ${style && styles[style]}
-      ${loading && styles.loading}
-      ${disabled && styles.disabled}
-    `}>{!loading ? label : (
+    <button
+      className={`
+        ${styles.btn}
+        ${size && styles[size]}
+        ${style && styles[style]}
+        ${loading && styles.loading}
+        ${disabled && styles.disabled}
+      `}
+      {...other}
+    >{!loading ? label : (
         <Icon icon='Hourglass' height={height} width={width} className={styles.icon}/>
       )}
     </button>
