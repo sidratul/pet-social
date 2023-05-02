@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import { useLayoutContext } from '@/layouts';
 import { UserParam, UserResposne } from '@/services/user/types';
 import { toast } from 'react-toastify';
-import { register } from '@/services/user';
-import { ApiError } from '@/services/api';
 import { getFirebaseMessage } from '@/utils';
+import { firebaseRegister } from '@/services/firebase';
+import { FirebaseError } from 'firebase-admin';
 
 interface UserRegister extends UserParam {
   confirmPassword: string;
@@ -19,12 +19,12 @@ export const RegisterForm = () => {
 
   const onSubmit = async (values: UserRegister) => {
     try{
-      const user = await register(values);
-      userLogin(user.data.data);
+      const user = await firebaseRegister(values);
+      userLogin(user);
       toast.success('Register success');
     } catch(e) {
-      const error = e as ApiError<UserResposne>;
-      const message = getFirebaseMessage(error.response?.data.error.code);
+      const error = e as FirebaseError;
+      const message = getFirebaseMessage(error.code);
       toast.error(message);
     }
   }

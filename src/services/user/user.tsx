@@ -9,10 +9,14 @@ export const register = (data: UserParam) => {
   return api.post<UserResposne>('/api/register', data);
 }
 
+export const logout = () => {
+  return api.patch('/api/logout');
+}
+
 export const getUserFavBreed = (userUID: string) => {
-  return api.get<any>(`/api/breeds?userId=${userUID}`);
+  return api.get<void>(`/api/breeds?userId=${userUID}`);
 }
 
 export const setUserFavBreed = (data: UserFavBreedParams) => {
-  return api.put<any>('/api/breeds', data);
+  return api.put<void>('/api/breeds', data);
 }

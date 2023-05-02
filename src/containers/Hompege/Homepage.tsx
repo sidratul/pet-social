@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from 'react';
 import { Breed } from '@/services/dog/types';
 import { DogImages } from '@/components/DogImages/DogImages';
 import { getBreedLabel } from '@/utils';
+import { changeFavoriteBreed } from '@/services/firebase/firestore';
 
 interface HomepageContextProps {
   breeds?: Breed[];
@@ -13,11 +14,15 @@ const HomepageContext = createContext<HomepageContextProps>({} as HomepageContex
 
 export const Homepage = () => {
   const [breeds, setBreeds] = useState<Breed[]>();
+
+
   return (
     <HomepageContext.Provider
       value={{
         breeds,
-        setBreeds,
+        setBreeds(breeds: Breed[]){
+          changeFavoriteBreed(breeds);
+        },
       }}
     >
       <div className="flex flex-row space-x-8">

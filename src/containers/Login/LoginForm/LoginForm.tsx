@@ -6,20 +6,20 @@ import * as Yup from 'yup';
 import { useLayoutContext } from '@/layouts';
 import { UserParam, UserResposne } from '@/services/user/types';
 import { toast } from 'react-toastify';
-import { login } from '@/services/user';
-import { ApiError } from '@/services/api';
 import { getFirebaseMessage } from '@/utils';
+import { firebaseLogin } from '@/services/firebase';
+import { FirebaseError } from 'firebase/app';
 
 export const LoginForm = () => {
   const { userLogin } = useLayoutContext();
 
   const onSubmit = async (values: UserParam) => {
     try{
-      const user = await login(values);
-      userLogin(user.data.data);
+      const user = await firebaseLogin(values);
+      userLogin(user);
     } catch(e) {
-      const error = e as ApiError<UserResposne>;
-      const message = getFirebaseMessage(error.response?.data.error.code);
+      const error = e as FirebaseError;
+      const message = getFirebaseMessage(error.code);
       toast.error(message);
     }
   }

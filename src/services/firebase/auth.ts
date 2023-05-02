@@ -2,8 +2,12 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  User,
+  signInWithCustomToken,
+  signInWithCredential,
+  GoogleAuthProvider
 } from 'firebase/auth';
-import { auth as adminAuth } from "firebase-admin";
 import { app } from './config';
 import { UserParam } from '../user/types';
 
@@ -19,7 +23,25 @@ export const firebaseLogin = (props: UserParam) => {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
-export const validateToken = (token: string) => {
+export const getUserSession = (): Promise<User>  => {
   const auth = getAuth(app);
-  return adminAuth(app).verifyIdToken(token);
+  return new Promise((resolve, reject) => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        return resolve(user);
+      }
+
+      reject(new Error('User not found'));
+    });
+  });
+}
+
+export const firebaseLogout = () => {
+  const auth = getAuth(app);
+  return signOut(auth);
+}
+
+export const getCurrentUser = (): User | null => {
+  const auth = getAuth(app);
+  return auth.currentUser;
 }
