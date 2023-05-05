@@ -4,16 +4,16 @@ import { BaseTextInput, Button } from '@/components'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLayoutContext } from '@/layouts';
-import { UserParam, UserResposne } from '@/services/user/types';
 import { toast } from 'react-toastify';
 import { getFirebaseMessage } from '@/utils';
 import { firebaseLogin } from '@/services/firebase';
 import { FirebaseError } from 'firebase/app';
+import { UserParams } from '@/services/users';
 
 export const LoginForm = () => {
   const { userLogin } = useLayoutContext();
 
-  const onSubmit = async (values: UserParam) => {
+  const onSubmit = async (values: UserParams) => {
     try{
       const user = await firebaseLogin(values);
       userLogin(user);
@@ -24,9 +24,9 @@ export const LoginForm = () => {
     }
   }
 
-  const { errors, handleSubmit, handleChange} = useFormik<UserParam>({
+  const { errors, handleSubmit, handleChange} = useFormik<UserParams>({
     onSubmit,
-    initialValues: {} as UserParam,
+    initialValues: {} as UserParams,
     validationSchema: Yup.object({
       email: Yup.string().required().email(),
       password: Yup.string().required().min(6),

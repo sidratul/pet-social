@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react'
 import styles from './Button.module.scss';
 import { Icon } from '../Icon';
 
-interface ButtonProps extends Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type'>{
+interface ButtonProps extends Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'onClick'>{
   label: string;
   style?: 'primary' | 'secondary';
   size?: 'large' | 'medium' | 'small';

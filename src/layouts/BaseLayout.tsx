@@ -1,10 +1,8 @@
 import React, { useState, createContext, ReactNode, useEffect, useContext } from 'react'
 import { User, UserCredential } from 'firebase/auth';
-import { getCookie, setCookie, removeCookie } from 'typescript-cookie';
 import { ToastContainer } from 'react-toastify';
-import { logout as firebaseLogout } from '@/services/user';
 import 'react-toastify/dist/ReactToastify.css';
-import { getUserSession } from '@/services/firebase';
+import { firebaseLogout, getUserSession } from '@/services/firebase';
 
 interface BaseLayoutContextProps {
   user?: User;

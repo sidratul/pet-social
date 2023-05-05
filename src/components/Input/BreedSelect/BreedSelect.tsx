@@ -47,7 +47,7 @@ export const BreedSelect = (props: BreedSelect) => {
     })
 
     return breeds;
-  }, [] );
+  }, []);
 
   return (
     <div>

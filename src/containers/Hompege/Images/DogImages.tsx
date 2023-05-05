@@ -3,6 +3,7 @@ import { getRandomDogImages } from '@/services/dog/dog';
 import { Breed } from '@/services/dog/types';
 import { DogImage } from './DogImage';
 import { getLikeByUrls } from '@/services/firebase/firestore';
+import { useHomepageContext } from '../Homepage';
 
 interface DogImagesProps {
   breed: Breed;
@@ -10,10 +11,16 @@ interface DogImagesProps {
 
 export const DogImages = (props: DogImagesProps) => {
   const { breed } = props;
-  const {data, error, isLoading} = getRandomDogImages({
+  const { setMutate } = useHomepageContext();
+
+  const {data, error, isLoading, mutate} = getRandomDogImages({
     ...breed,
     count: 6,
   });
+
+  useEffect(()=>{
+    setMutate(breed,mutate);
+  },[breed, setMutate, mutate]);
 
   const [likedImages, setLikedImages] = useState<Record<string,string>>({});
 
@@ -23,14 +30,14 @@ export const DogImages = (props: DogImagesProps) => {
     }
 
     getLikeByUrls(data.message).then(urls => setLikedImages(urls));
-  }, [data])
+  }, [data]);
 
   if(!data || isLoading || error) {
     return <></>;
   }
 
   return (
-    <div className='grid grid-cols-3 gap-4 p-4'>
+    <div className='grid md:grid-cols-3 gap-4 px-4 my-4'>
       {data.message.map( url => (
         <DogImage key={url} url={url} likedImages={likedImages}/>
       ))}

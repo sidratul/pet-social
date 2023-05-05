@@ -1,3 +1,3 @@
 export * from './BaseLayout';
-export * from './MainLayout';
+export * from './MainLayout/MainLayout';
 export * from './GuestLayout';

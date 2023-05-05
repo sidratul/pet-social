@@ -4,20 +4,17 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
-  signInWithCustomToken,
-  signInWithCredential,
-  GoogleAuthProvider
 } from 'firebase/auth';
 import { app } from './config';
-import { UserParam } from '../user/types';
+import { UserParams } from '../users';
 
-export const firebaseRegister = (props: UserParam) => {
+export const firebaseRegister = (props: UserParams) => {
   const auth = getAuth(app);
   const {email, password} = props;
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
-export const firebaseLogin = (props: UserParam) => {
+export const firebaseLogin = (props: UserParams) => {
   const auth = getAuth(app);
   const {email, password} = props;
   return signInWithEmailAndPassword(auth, email, password);
