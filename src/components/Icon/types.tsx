@@ -5,4 +5,4 @@ export interface IconProps extends Pick<ImageProps, 'width' | 'height' | 'classN
   icon: IconList;
 }
 
-type IconList = 'Eye' | 'EyeOff' | 'Hourglass';
+type IconList = 'Eye' | 'EyeOff' | 'Hourglass' | 'Heart';

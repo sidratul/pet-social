@@ -1,7 +1,7 @@
 import { getAllBreeds } from '@/services/dog/dog';
 import { Breed } from '@/services/dog/types';
 import { error } from 'console';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select'
 
 interface BreedSelect {
@@ -13,7 +13,15 @@ interface BreedSelect {
 export const BreedSelect = (props: BreedSelect) => {
   const { onChange, defaultValue, maxCount } = props;
   const { data, error, isLoading } = getAllBreeds();
-  const [ currentBreeds, setBreed ] = useState<Breed[]>([]);
+  const [ currentBreeds, setBreed ] = useState<Breed[]>(defaultValue || []);
+
+  useEffect(()=>{
+    if(!defaultValue){
+      return;
+    }
+
+    setBreed(defaultValue);
+  }, [defaultValue])
 
   const handleChange = (breeds: Breed[]) => {
     if( maxCount && breeds.length > maxCount ) {
