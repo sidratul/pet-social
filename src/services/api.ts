@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError } from 'axios';
 import UseSWR from 'swr';
 
 const fetcher = <T>(url: string): Promise<T> => axios.get<T>(url).then(res => res.data)
@@ -10,16 +10,3 @@ export const get = <T,E=unknown>(url: string) => {
     revalidateOnFocus: false,
   });
 }
-
-export const post = <T=unknown, D=unknown>(url: string, data: D) => {
-  return axios.post<T, AxiosResponse<T>, D>(url, data)
-}
-
-export const put = <T=unknown, D=unknown>(url: string, data: D) => {
-  return axios.put<T, AxiosResponse<T>, D>(url, data)
-}
-
-export const patch = <T=unknown, D=unknown>(url: string, data?: D) => {
-  return axios.patch<T, AxiosResponse<T>, D>(url, data)
-}
-

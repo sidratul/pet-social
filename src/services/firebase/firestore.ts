@@ -1,7 +1,6 @@
 import { deleteDoc, collection, doc, getDoc, getDocs, getFirestore, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { app } from './config';
 import { Breed } from '../dog/types';
-import { UserFavBreedParams } from '../user/types';
 import { getCurrentUser } from './auth';
 import { error } from 'console';
 import { getKeyFromImageUrl } from '@/utils';
