@@ -76,7 +76,7 @@ export const Homepage = () => {
         </div>
         <Card className='bg-white col-span-2'>
           {breeds.length === 0 && (
-            <h2 className='text-center p-8'>Please Add Your Favorite Dog Breed</h2>
+            <h2 className='text-center p-8'>Please Add Favorite Dog Breed</h2>
           )}
           {
             breeds?.map(breed => (

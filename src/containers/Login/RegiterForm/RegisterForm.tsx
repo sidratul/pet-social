@@ -4,13 +4,13 @@ import { BaseTextInput, Button } from '@/components'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLayoutContext } from '@/layouts';
-import { UserParam, UserResposne } from '@/services/user/types';
 import { toast } from 'react-toastify';
 import { getFirebaseMessage } from '@/utils';
 import { firebaseRegister } from '@/services/firebase';
 import { FirebaseError } from 'firebase-admin';
+import { UserParams } from '@/services/users';
 
-interface UserRegister extends UserParam {
+interface UserRegister extends UserParams {
   confirmPassword: string;
 }
 

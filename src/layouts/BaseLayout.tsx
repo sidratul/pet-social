@@ -14,6 +14,7 @@ const BaseLayoutContext = createContext<BaseLayoutContextProps>({} as BaseLayout
 
 export const BaseLayout = ({children}: {children: ReactNode}) => {
   const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   const userLogin = async (user: UserCredential) => {
     setUser(user.user);
@@ -27,7 +28,8 @@ export const BaseLayout = ({children}: {children: ReactNode}) => {
   useEffect(()=>{
     getUserSession()
       .then(userData=> setUser(userData))
-      .catch(_ => console.log('no user'));
+      .catch(_ => console.log('no user'))
+      .finally(()=> setLoading(false));
   },[])
 
   return (
@@ -38,7 +40,9 @@ export const BaseLayout = ({children}: {children: ReactNode}) => {
         logout,
       }}
     >
-      {children}
+      {loading ? (
+        <div>Loading...</div>
+      ): children}
       <ToastContainer/>
     </BaseLayoutContext.Provider>
   )
