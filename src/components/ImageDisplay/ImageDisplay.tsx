@@ -11,11 +11,14 @@ interface ImageDisplay {
 
 export const ImageDisplay = (props: ImageDisplay) => {
   const { url , liked, handleClick } = props;
-  const [like, setLike] = useState<boolean>(false);
+  const [like, setLike] = useState<boolean>(liked);
 
   useEffect(()=>{
+    if(liked){
+      console.log("liked", liked);
+    }
     setLike(liked);
-  },[liked]);
+  },[liked, url]);
 
   const onClick = () => {
     handleClick && handleClick(!like);

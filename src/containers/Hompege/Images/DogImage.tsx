@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ImageDisplay } from '@/components'
 import { dislikeImage, likeImage } from '@/services/firebase/firestore'
 
@@ -9,6 +9,11 @@ interface DogImageProps {
 
 export const DogImage = ({url, likedImages }: DogImageProps) => {
   const [liked, setLiked] = useState<boolean>(!!likedImages[url]);
+
+  useEffect(()=>{
+    setLiked(!!likedImages[url]);
+  },[likedImages, url])
+
   let timeout: NodeJS.Timeout;
 
   const handleClick = (isLike: boolean) => {

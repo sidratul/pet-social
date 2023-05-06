@@ -28,7 +28,6 @@ export const DogImages = (props: DogImagesProps) => {
     if(!data) {
       return;
     }
-
     getLikeByUrls(data.message).then(urls => setLikedImages(urls));
   }, [data]);
 
