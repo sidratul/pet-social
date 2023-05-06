@@ -19,6 +19,7 @@ export const LoginForm = () => {
       userLogin(user);
     } catch(e) {
       const error = e as FirebaseError;
+      console.log("error", error);
       const message = getFirebaseMessage(error.code);
       toast.error(message);
     }
