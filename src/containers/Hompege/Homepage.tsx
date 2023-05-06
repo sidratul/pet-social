@@ -74,7 +74,7 @@ export const Homepage = () => {
         <div className=''>
           <FavoriteBreed/>
         </div>
-        <Card className='bg-white col-span-2'>
+        <Card className='bg-white lg:col-span-2'>
           {breeds.length === 0 && (
             <h2 className='text-center p-8'>Please Add Favorite Dog Breed</h2>
           )}

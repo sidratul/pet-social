@@ -4,9 +4,9 @@ import getConfig from "next/config";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig = {} } = getConfig();
 const { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId} = publicRuntimeConfig;
-// Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey,
   authDomain,
